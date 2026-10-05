@@ -211,6 +211,10 @@
     ];
     const stage = $('[data-stage]'), stageImgs = $$('[data-stage-img]'), stageN = $('[data-stage-n]');
     const peek = $('[data-peek-img]');
+    // decode every room picture up front, so switching rooms never waits on an image
+    const warm = () => stageImgs.forEach(im => { if (im.decode) im.decode().catch(() => {}); });
+    if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 2500 }); else setTimeout(warm, 1200);
+    ROOMS.forEach(r => { const im = new Image(); im.src = `assets/img/${r.views[1][1]}-960.webp`; });
     let active = 0;
     const setActive = i => {
       if (i === active) return; active = i;

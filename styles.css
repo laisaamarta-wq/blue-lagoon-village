@@ -216,19 +216,20 @@ em{font-style:italic}
 .stay__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-inline:var(--gut)}
 .stay__stage{grid-column:1/8;position:sticky;top:0;height:100vh;height:100svh;display:grid;align-content:center;gap:14px}
 .stay__frame{position:relative;height:78vh;overflow:hidden;background:var(--sand)}
-.stay__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0);transform:scale(1.08);transition:clip-path 1.15s var(--e-io),transform 1.6s var(--e-out)}
-.stay__img.is-on{clip-path:inset(0 0 0 0);transform:scale(1)}
-.stay__frame:hover .stay__img.is-on{transform:scale(1.025)}
-.stay__peek{position:absolute;right:22px;bottom:22px;width:24%;aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(251,248,242,.5);clip-path:inset(100% 0 0 0);transition:clip-path .7s var(--e-io)}
+.stay__frame{isolation:isolate}
+.stay__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.045) translateZ(0);transition:opacity .4s linear .7s,transform 1.3s var(--e-out);will-change:opacity,transform;backface-visibility:hidden}
+.stay__img.is-on{opacity:1;transform:scale(1) translateZ(0);z-index:1;transition:opacity .8s var(--e-out),transform 1.3s var(--e-out)}
+.stay__frame:hover .stay__img.is-on{transform:scale(1.02) translateZ(0)}
+.stay__peek{position:absolute;z-index:2;right:22px;bottom:22px;width:24%;aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(251,248,242,.5);opacity:0;transform:translateY(14px);transition:opacity .5s var(--e-out),transform .6s var(--e-out);will-change:opacity,transform}
 .stay__peek img{width:100%;height:100%;object-fit:cover}
-.stay__stage.is-peek .stay__peek{clip-path:inset(0 0 0 0)}
+.stay__stage.is-peek .stay__peek{opacity:1;transform:none}
 .stay__count{display:flex;justify-content:space-between;align-items:center;color:var(--olive)}
 .stay__ticks{display:flex;gap:8px}
 .stay__ticks i{display:block;width:28px;height:1px;background:var(--line);transition:background-color .6s var(--e-out)}
 .stay__ticks i.is-on{background:var(--char)}
 .stay__list{grid-column:9/13}
 .room{min-height:100vh;min-height:100svh;display:grid;align-content:center;gap:20px;padding-block:10vh}
-.stay__hold{height:46vh}
+.stay__hold{height:30vh}
 .room__mob{display:none}
 .room__n{font:italic 400 1.4rem/1 var(--serif);color:var(--gold)}
 .room__name{font-size:clamp(2.2rem,1.4rem + 2vw,3.4rem);line-height:1}
