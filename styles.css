@@ -297,6 +297,7 @@ em{font-style:italic}
 .foot{grid-column:1/-1;position:relative;z-index:2;display:grid;grid-template-columns:1fr auto auto auto;gap:18px clamp(28px,4vw,64px);align-items:end;border-top:1px solid var(--line-light);padding-top:22px;margin-top:clamp(20px,5vh,56px);font-size:var(--t-small);color:rgba(251,248,242,.82)}
 .foot__name{font:400 1.7rem/1 var(--serif);letter-spacing:-.01em;color:var(--light)}
 .foot address{font-style:normal}
+.foot__info{white-space:nowrap}
 .foot__nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px 22px;font:500 var(--t-meta)/1.4 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--light)}
 
 /* ---------- room detail ---------- */
