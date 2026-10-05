@@ -134,7 +134,7 @@ em{font-style:italic}
 @keyframes sweep{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
 
 /* ---------- 02 approach — the view opens as you come closer ---------- */
-.approach{position:relative;z-index:2;padding:clamp(110px,12vw,200px) 0 var(--air);background:var(--ivory)}
+.approach{position:relative;z-index:2;padding:clamp(110px,12vw,200px) 0 clamp(56px,6vw,96px);background:var(--ivory)}
 .approach__head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:26px;padding-inline:var(--gut);align-items:end}
 .approach__tag{grid-column:1/-1}
 .approach__title{grid-column:1/9;font:400 var(--t-xl)/.94 var(--serif);letter-spacing:-.028em;margin-left:-.04em}
@@ -145,7 +145,7 @@ em{font-style:italic}
 .approach__cap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-inline:var(--gut);align-items:baseline}
 .approach__cap .meta{grid-column:1/4;color:var(--olive)}
 .approach__capline{grid-column:4/10;font:400 1.25rem/1.35 var(--serif);color:var(--char-2)}
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(70px,8vw,130px) var(--gut) 0;border-top:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(40px,4.5vw,72px) var(--gut) 0;border-top:1px solid var(--line)}
 .facts li{display:grid;gap:8px;padding:22px 0;border-right:1px solid var(--line);padding-right:16px}
 .facts li+li{padding-left:24px}
 .facts li:last-child{border-right:0}
@@ -153,11 +153,12 @@ em{font-style:italic}
 .facts span{font-size:var(--t-small);color:var(--olive)}
 
 /* ---------- 03 descend — one continuous move: hillside → lagoon → water ---------- */
-.descend{position:relative;height:470vh;background:var(--deep-2)}
+.descend{position:relative;height:380vh;background:var(--deep-2)}
 .descend__stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:var(--light)}
 .d-layer{position:absolute;inset:0;overflow:hidden}
 .d-layer video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-.d-layer--lagoon{--m:-24%;-webkit-mask-image:linear-gradient(to top,#000 var(--m),transparent calc(var(--m) + 22%));mask-image:linear-gradient(to top,#000 var(--m),transparent calc(var(--m) + 22%))}
+.d-layer--lagoon{top:-26vh;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26vh);mask-image:linear-gradient(to bottom,transparent 0,#000 26vh);transform:translate3d(0,100%,0);will-change:transform}
+.d-in{position:absolute;left:0;right:0;bottom:0;height:100vh;height:100svh;overflow:hidden;will-change:transform}
 .d-layer--water{opacity:0;will-change:opacity}
 .descend__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,24,28,.46) 0%,rgba(9,24,28,.16) 42%,rgba(9,24,28,0) 68%),linear-gradient(0deg,rgba(9,24,28,.4) 0%,rgba(9,24,28,0) 28%)}
 .descend__deep{position:absolute;inset:0;background:var(--deep);opacity:0;pointer-events:none}
@@ -245,7 +246,7 @@ em{font-style:italic}
 .morning__title{font:400 var(--t-xl)/.93 var(--serif);letter-spacing:-.028em;color:var(--deep)}
 .morning__detail{grid-column:6/10;grid-row:2;position:relative;z-index:3;margin-top:clamp(48px,6vw,100px);display:grid;gap:12px;will-change:transform}
 .morning__detail .media{aspect-ratio:4/3;height:auto;outline:10px solid var(--cream)}
-.morning__detail figcaption{color:var(--olive)}
+.morning__detail figcaption{color:var(--olive);text-align:right}
 .morning__note{grid-column:7/11;grid-row:3;align-self:start;color:var(--char-2);padding-top:clamp(36px,4vw,64px)}
 
 /* ---------- 07 retreat — the film holds while the words arrive ---------- */
@@ -352,11 +353,12 @@ em{font-style:italic}
   .approach__cap{grid-template-columns:minmax(0,1fr);row-gap:6px}
   .approach__cap>*{grid-column:1!important}
   .approach__capline{font-size:1.1rem}
-  .facts{grid-template-columns:1fr 1fr;margin-top:64px}
+  .facts{grid-template-columns:1fr 1fr;margin-top:40px}
+  .approach{padding-bottom:48px}
   .facts li:nth-child(2){border-right:0}
   .facts li:nth-child(3){padding-left:0;border-top:1px solid var(--line)}
   .facts li:nth-child(4){border-top:1px solid var(--line)}
-  .descend{height:410vh}
+  .descend{height:330vh}
   .descend__words p{font-size:clamp(2.5rem,11vw,3.6rem);max-width:9ch}
   .descend__steps{gap:20px}
   .descend__shade{background:linear-gradient(0deg,rgba(9,24,28,.42) 0%,rgba(9,24,28,.1) 40%,rgba(9,24,28,.28) 100%)}

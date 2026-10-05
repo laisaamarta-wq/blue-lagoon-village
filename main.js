@@ -131,13 +131,14 @@
     syncDescendVideos();
   }, { rootMargin: '600px 0px' }).observe(descend);
   const setStep = n => steps.forEach((s, k) => s.classList.toggle('is-on', k === n));
-  gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: descend, start: 'top top', end: 'bottom bottom', scrub: 1.5,
+  gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: descend, start: 'top top', end: 'bottom bottom', scrub: .9, invalidateOnRefresh: true,
       onUpdate: s => { dP = s.progress; setStep(dP < .37 ? 0 : dP < .7 ? 1 : 2); syncDescendVideos(); } } })
     // hillside: the camera leans in
     .fromTo(dv[0], { scale: 1 }, { scale: 1.12, duration: .52, ease: 'sine.inOut' }, 0)
     .to(words[0], { opacity: 0, y: -14, duration: .12, ease: 'sine.inOut' }, .2)
     // the lagoon rises into the frame from below through a soft edge, as if the camera tilts down the slope
-    .fromTo(layers[1], { '--m': '-24%' }, { '--m': '104%', duration: .3, ease: 'sine.inOut' }, .22)
+    .fromTo(layers[1], { y: () => layers[1].offsetHeight }, { y: 0, duration: .3, ease: 'sine.inOut' }, .22)
+    .fromTo('[data-d-in]', { y: () => -layers[1].offsetHeight }, { y: 0, duration: .3, ease: 'sine.inOut' }, .22)
     .to(dv[0], { yPercent: -10, duration: .3, ease: 'sine.inOut' }, .22)
     .fromTo(dv[1], { scale: 1.22, yPercent: 6 }, { scale: 1.04, yPercent: 0, duration: .32, ease: 'sine.out' }, .22)
     .fromTo(words[1], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .12, ease: 'sine.inOut' }, .36)
