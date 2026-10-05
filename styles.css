@@ -318,6 +318,19 @@ em{font-style:italic}
 .detail__specs dt{font:500 var(--t-meta)/1.8 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
 .detail__panel .btn{justify-self:start;margin-top:6px}
 
+/* ---------- date fields — a clear tap target on every device ---------- */
+.dfield{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:8px 2px;border-bottom:1px solid currentColor;cursor:pointer;font:400 1rem/1.4 var(--sans);letter-spacing:0;text-transform:none}
+.dfield input{position:absolute!important;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0!important;padding:0!important;margin:0;-webkit-appearance:none;appearance:none;z-index:1}
+.dfield__txt{pointer-events:none}
+.dfield.is-empty .dfield__txt{opacity:.62}
+.dfield svg{flex:none;opacity:.85;pointer-events:none;transition:transform var(--t-micro) var(--e-out)}
+.dfield:hover svg{transform:translateY(-1px)}
+.finale__bar .dfield{color:var(--light);border-bottom-color:rgba(251,248,242,.42)}
+.finale__bar .dfield:hover{border-bottom-color:var(--light)}
+.form .dfield{color:var(--char);border-bottom-color:rgba(36,38,37,.25)}
+.form .dfield:hover,.form .dfield:focus-within{border-bottom-color:var(--char)}
+.dfield:focus-within{outline:1px solid currentColor;outline-offset:4px}
+
 /* ---------- booking drawer ---------- */
 .book{position:fixed;inset:0;z-index:70}
 .book__scrim{position:absolute;inset:0;background:rgba(16,32,36,.36);opacity:0;transition:opacity .6s var(--e-out)}
@@ -412,6 +425,7 @@ em{font-style:italic}
   .finale__bar .btn{grid-column:1/-1;justify-content:center;margin-top:6px}
   .foot{grid-template-columns:1fr 1fr;row-gap:18px}
   .foot__name{grid-column:1/-1}
+  .foot__info{white-space:normal}
   .foot__nav{grid-column:1/-1;justify-content:flex-start}
   .detail__panel{left:0;right:0;width:auto;bottom:0;border-left:0;border-right:0;border-bottom:0}
   .detail__nav{top:calc(24px + env(safe-area-inset-top,0px));bottom:auto;left:var(--gut);right:auto}

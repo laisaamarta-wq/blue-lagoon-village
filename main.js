@@ -298,6 +298,7 @@
       if (!menu.hidden) menuBtn.click();
       form.hidden = false; done.hidden = true; err.textContent = '';
       Object.entries(prefill).forEach(([k, v]) => { if (v && form.elements[k]) form.elements[k].value = v; });
+      if (window.__syncDates) window.__syncDates();
       book.hidden = false; document.documentElement.style.overflow = 'hidden';
       requestAnimationFrame(() => requestAnimationFrame(() => book.classList.add('is-open')));
       $('.book__x', book).focus({ preventScroll: true, focusVisible: false });
@@ -317,6 +318,32 @@
     });
     const today = new Date().toISOString().slice(0, 10);
     $$('input[type="date"]').forEach(i => i.min = today);
+
+    // date fields: an obvious tap target with a calendar icon and a readable date,
+    // because an empty native date input shows nothing at all on iPhone
+    const ICON = '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="2.8" width="13" height="11.7" rx="1"/><path d="M1.5 6.3h13M5 1.2v3M11 1.2v3"/></svg>';
+    const fmtDate = v => new Date(v + 'T12:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const dateFields = $$('input[type="date"]').map(input => {
+      const box = document.createElement('span');
+      box.className = 'dfield';
+      input.replaceWith(box);
+      box.append(input);
+      box.insertAdjacentHTML('beforeend', '<span class="dfield__txt"></span>' + ICON);
+      const txt = $('.dfield__txt', box);
+      const sync = () => { txt.textContent = input.value ? fmtDate(input.value) : 'Select date'; box.classList.toggle('is-empty', !input.value); };
+      input.addEventListener('input', sync); input.addEventListener('change', sync);
+      box.addEventListener('click', e => { if (e.target !== input && input.showPicker) { try { input.showPicker(); } catch (err) { input.focus(); } } });
+      input.addEventListener('click', () => { if (input.showPicker) { try { input.showPicker(); } catch (err) {} } });
+      sync();
+      return { input, sync };
+    });
+    window.__syncDates = () => dateFields.forEach(d => d.sync());
+    // leaving can't come before arriving
+    [['q-in', 'q-out'], ['book-in', 'book-out']].forEach(([a, b]) => {
+      const i = document.getElementById(a), o = document.getElementById(b);
+      if (!i || !o) return;
+      i.addEventListener('change', () => { o.min = i.value || today; if (o.value && o.value <= i.value) { o.value = ''; window.__syncDates(); } });
+    });
     form.addEventListener('submit', e => {
       e.preventDefault();
       const f = form.elements;
