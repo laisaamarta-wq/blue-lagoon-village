@@ -294,7 +294,7 @@ em{font-style:italic}
 
 
 /* ---------- footer — set into the bottom of the lagoon film ---------- */
-.foot{grid-column:1/-1;position:relative;z-index:2;display:grid;grid-template-columns:1fr auto auto auto;gap:18px clamp(28px,4vw,64px);align-items:end;border-top:1px solid var(--line-light);padding-top:22px;margin-top:clamp(20px,5vh,56px);font-size:var(--t-small);color:rgba(251,248,242,.82)}
+.foot{grid-column:1/-1;position:relative;z-index:2;display:grid;grid-template-columns:1fr auto auto auto;grid-template-areas:none;gap:18px clamp(28px,4vw,64px);align-items:end;border-top:1px solid var(--line-light);padding-top:22px;margin-top:clamp(20px,5vh,56px);font-size:var(--t-small);color:rgba(251,248,242,.82)}
 .foot__name{font:400 1.7rem/1 var(--serif);letter-spacing:-.01em;color:var(--light)}
 .foot address{font-style:normal}
 .foot__info{white-space:nowrap}
@@ -317,6 +317,16 @@ em{font-style:italic}
 .detail__specs div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line-light);font-size:var(--t-small)}
 .detail__specs dt{font:500 var(--t-meta)/1.8 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
 .detail__panel .btn{justify-self:start;margin-top:6px}
+
+/* ---------- social links ---------- */
+.social{display:flex;gap:10px}
+.social__a{display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 14px 0 11px;border:1px solid currentColor;border-radius:999px;font:500 var(--t-meta)/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.88;transition:opacity var(--t-micro) var(--e-out),background-color var(--t-micro) var(--e-out)}
+.social__a:hover,.social__a:focus-visible{opacity:1;background:rgba(251,248,242,.1)}
+.foot .social{grid-column:4;justify-self:end;color:var(--light)}
+.foot .social__a{border-color:rgba(251,248,242,.42)}
+.menu .social{color:var(--char)}
+.menu .social__a{border-color:rgba(36,38,37,.3)}
+.menu .social__a:hover{background:rgba(36,38,37,.05)}
 
 /* ---------- date fields — a clear tap target on every device ---------- */
 .dfield{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:8px 2px;border-bottom:1px solid currentColor;cursor:pointer;font:400 1rem/1.4 var(--sans);letter-spacing:0;text-transform:none}
@@ -426,6 +436,7 @@ em{font-style:italic}
   .foot{grid-template-columns:1fr 1fr;row-gap:18px}
   .foot__name{grid-column:1/-1}
   .foot__info{white-space:normal}
+  .foot .social{grid-column:1/-1;justify-self:start}
   .foot__nav{grid-column:1/-1;justify-content:flex-start}
   .detail__panel{left:0;right:0;width:auto;bottom:0;border-left:0;border-right:0;border-bottom:0}
   .detail__nav{top:calc(24px + env(safe-area-inset-top,0px));bottom:auto;left:var(--gut);right:auto}
