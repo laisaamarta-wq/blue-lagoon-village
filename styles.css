@@ -160,9 +160,9 @@ em{font-style:italic}
 .d-layer--lagoon{top:-26vh;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26vh);mask-image:linear-gradient(to bottom,transparent 0,#000 26vh);transform:translate3d(0,100%,0);will-change:transform}
 .d-in{position:absolute;left:0;right:0;bottom:0;height:100vh;height:100svh;overflow:hidden;will-change:transform}
 .d-layer--water{opacity:0;will-change:opacity}
-.descend__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,24,28,.46) 0%,rgba(9,24,28,.16) 42%,rgba(9,24,28,0) 68%),linear-gradient(0deg,rgba(9,24,28,.4) 0%,rgba(9,24,28,0) 28%)}
+.descend__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,24,28,.46) 0%,rgba(9,24,28,.16) 42%,rgba(9,24,28,0) 68%),linear-gradient(0deg,rgba(9,24,28,.5) 0%,rgba(9,24,28,.18) 30%,rgba(9,24,28,0) 52%)}
 .descend__deep{position:absolute;inset:0;background:var(--deep);opacity:0;pointer-events:none}
-.descend__words{position:absolute;left:var(--gut);right:var(--gut);top:50%;transform:translateY(-50%);display:grid}
+.descend__words{position:absolute;left:var(--gut);right:var(--gut);bottom:calc(clamp(40px,7vh,84px) + 58px + env(safe-area-inset-bottom,0px));display:grid;align-items:end}
 .descend__words p{grid-area:1/1;font:400 var(--t-xl)/.95 var(--serif);letter-spacing:-.026em;max-width:11ch;opacity:0;text-shadow:0 2px 44px rgba(8,20,24,.38)}
 .descend__words p:first-child{opacity:1}
 .descend__steps{position:absolute;left:var(--gut);bottom:calc(34px + env(safe-area-inset-bottom,0px));display:flex;gap:30px}
@@ -360,7 +360,8 @@ em{font-style:italic}
   .descend{height:330vh}
   .descend__words p{font-size:clamp(2.5rem,11vw,3.6rem);max-width:9ch}
   .descend__steps{gap:20px}
-  .descend__shade{background:linear-gradient(0deg,rgba(9,24,28,.42) 0%,rgba(9,24,28,.1) 40%,rgba(9,24,28,.28) 100%)}
+  .descend__shade{background:linear-gradient(0deg,rgba(9,24,28,.55) 0%,rgba(9,24,28,.12) 45%,rgba(9,24,28,.22) 100%)}
+  .descend__words{bottom:calc(32px + 50px + env(safe-area-inset-bottom,0px))}
   .water__track{padding:0 14vw 0 var(--gut);gap:20px}
   .w-intro{width:80vw;padding-right:4vw}
   .w-big,.w-full{width:82vw;height:62vh;height:62svh}
