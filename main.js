@@ -387,3 +387,28 @@
   if (!d || !f || !('IntersectionObserver' in window)) return;
   new IntersectionObserver(es => es.forEach(e => d.classList.toggle('is-hidden', e.isIntersecting)), { threshold: 0.1 }).observe(f);
 })();
+
+/* rooms slider counter on phones */
+(() => {
+  const l = document.querySelector('.stay__list'), n = document.querySelector('[data-sdots-n]'), bar = document.querySelector('[data-sdots-bar]');
+  if (!l || !n) return;
+  const rooms = [...l.querySelectorAll('.room')];
+  const upd = () => {
+    const x = l.getBoundingClientRect().left; let i = 0;
+    rooms.forEach((r, k) => { if (r.getBoundingClientRect().left - x < r.offsetWidth / 2) i = k; });
+    n.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(rooms.length).padStart(2, '0');
+    bar.style.transform = `scaleX(${(i + 1) / rooms.length})`;
+  };
+  l.addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true }); upd();
+})();
+
+/* phone contact bar: slips away while scrolling down, comes back when you stop or scroll up */
+(() => {
+  const d = document.querySelector('.cdock'); if (!d || innerWidth > 760) return;
+  let last = scrollY, t = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY, down = y > last + 4; last = y;
+    if (down && y > 200) d.classList.add('is-away'); else if (y < last - 4) d.classList.remove('is-away');
+    clearTimeout(t); t = setTimeout(() => d.classList.remove('is-away'), 700);
+  }, { passive: true });
+})();
