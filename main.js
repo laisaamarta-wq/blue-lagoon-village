@@ -350,10 +350,15 @@
       if (!f.in.value || !f.out.value) { err.textContent = 'Add your arrival and departure dates.'; return; }
       if (f.out.value <= f.in.value) { err.textContent = 'Your departure date needs to be after your arrival.'; return; }
       if (!f.name.value.trim()) { err.textContent = 'Add your name so we know who to write to.'; return; }
-      if (!/^\S+@\S+\.\S+$/.test(f.email.value)) { err.textContent = 'Add an email address we can reply to.'; return; }
+      if (f.email.value && !/^\S+@\S+\.\S+$/.test(f.email.value)) { err.textContent = 'Check your email address.'; return; }
       const fmt = d => new Date(d + 'T12:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
       const nights = Math.round((new Date(f.out.value) - new Date(f.in.value)) / 864e5);
-      $('[data-book-summary]').textContent = `${f.room.value}, ${fmt(f.in.value)} to ${fmt(f.out.value)} (${nights} night${nights > 1 ? 's' : ''}), ${f.guests.value} guest${f.guests.value > 1 ? 's' : ''}.`;
+      const summary = `${f.room.value}, ${fmt(f.in.value)} to ${fmt(f.out.value)} (${nights} night${nights > 1 ? 's' : ''}), ${f.guests.value} guest${f.guests.value > 1 ? 's' : ''}.`;
+      $('[data-book-summary]').textContent = summary;
+      const msg = `Hello Blue Lagoon Village! I would like to book a stay.\n${summary}\nName: ${f.name.value.trim()}\nEmail: ${f.email.value.trim()}`;
+      const via = (e.submitter && e.submitter.value) || 'wa';
+      if (via === 'mail') location.href = `mailto:info@bluelagoonvillage.net?subject=${encodeURIComponent('Booking request — ' + f.name.value.trim())}&body=${encodeURIComponent(msg)}`;
+      else window.open(`https://wa.me/905441564041?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       form.hidden = true; done.hidden = false;
     });
     addEventListener('keydown', e => {
@@ -374,4 +379,11 @@
     $('[data-water]').style.height = 'auto';
     st.style.position = 'relative'; st.style.height = 'auto'; st.style.paddingBlock = '12vh';
   }
+})();
+
+/* contact dock: steps aside when the footer (which has the same buttons) is on screen */
+(() => {
+  const d = document.querySelector('.cdock'), f = document.querySelector('#contact .social') || document.querySelector('#contact');
+  if (!d || !f || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(es => es.forEach(e => d.classList.toggle('is-hidden', e.isIntersecting)), { threshold: 0.1 }).observe(f);
 })();
