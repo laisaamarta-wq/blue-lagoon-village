@@ -750,3 +750,44 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .descend__steps{bottom:calc(var(--bl) + 116px)!important}
   .descend__words{bottom:calc(var(--bl) + 10px)!important;height:96px}
 }
+/* v12 "at a glance": four tiles — cream, sand, the pool at dusk, deep lagoon — with icons and counting numbers */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:clamp(40px,4.5vw,72px) var(--gut) 0;border:0;padding:0;list-style:none}
+.facts .fact{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:clamp(170px,15vw,230px);padding:clamp(18px,1.6vw,26px)!important;border:0!important;border-radius:20px;background:var(--cream);color:var(--char);overflow:hidden;isolation:isolate;opacity:0;transform:translateY(22px);transition:opacity .9s var(--e-out,ease),transform .9s var(--e-out,ease)}
+.facts.is-in .fact{opacity:1;transform:none}
+.facts.is-in .fact:nth-child(2){transition-delay:.09s}.facts.is-in .fact:nth-child(3){transition-delay:.18s}.facts.is-in .fact:nth-child(4){transition-delay:.27s}
+.fact--sand{background:var(--sand)!important}
+.fact--photo{color:var(--light)!important;background:var(--deep)!important}
+.fact--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.08);transition:transform 2.4s var(--e-out,ease)}
+.facts.is-in .fact--photo img{transform:scale(1)}
+.fact--photo::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(9,24,28,.15) 0%,rgba(9,24,28,.05) 40%,rgba(9,24,28,.62) 100%)}
+.fact--deep{background:var(--deep)!important;color:var(--light)!important}
+.fact--deep::after{content:'';position:absolute;right:-40%;bottom:-55%;width:120%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(113,153,154,.38),rgba(113,153,154,0) 62%);z-index:-1}
+.fact__ic{opacity:.8;flex:none}
+.fact--photo .fact__ic,.fact--deep .fact__ic{opacity:.95}
+.facts .fact b{display:flex;align-items:baseline;gap:4px;margin-top:auto;font:400 clamp(3.4rem,2.4rem + 2.6vw,5rem)/.9 var(--serif);letter-spacing:-.03em}
+.facts .fact b i{font-style:normal;font-variant-numeric:tabular-nums}
+.facts .fact b small{font:italic 400 .42em/1 var(--serif);letter-spacing:0;opacity:.8}
+.facts .fact span{font-size:var(--t-small);line-height:1.3;color:inherit;opacity:.72;max-width:16ch}
+.fact--photo span,.fact--deep span{opacity:.88}
+.fact__path path{stroke-dasharray:2.2 2.6;animation:factpath 2.6s linear infinite}
+@keyframes factpath{to{stroke-dashoffset:-9.6}}
+@media (max-width:760px){
+  .facts{grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}
+  .facts .fact{min-height:184px;border-radius:18px;padding:18px!important}
+  .facts .fact b{font-size:clamp(3.4rem,15vw,4.3rem)}
+  .facts .fact span{font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){.facts .fact{opacity:1;transform:none}.fact__path path{animation:none}}
+/* v12 room gallery on phones: larger 3:2 thumbnails that fill the space under the photo */
+@media (max-width:760px){
+  .detail__thumbs{gap:8px;padding:16px var(--gut) 4px}
+  .detail__thumbs button{flex:0 0 calc((100vw - 2*var(--gut) - 16px) / 2.6);height:auto;aspect-ratio:3/2;border-radius:12px}
+}
+/* v12 retreat on phones: the film fits the visible screen, the words rest fully above the contact bar */
+@media (max-width:760px){
+  .retreat__stage{height:100svh;height:100dvh}
+  .retreat__copy{margin-top:-100svh;margin-top:-100dvh;min-height:140svh;row-gap:20px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .retreat__media video{object-position:50% 40%}
+  .retreat__text{gap:12px}
+}
+@media (max-width:760px){.retreat__shade{background:linear-gradient(180deg,rgba(14,20,22,.25) 0%,rgba(14,20,22,0) 18%,rgba(14,20,22,.18) 36%,rgba(14,20,22,.62) 62%,rgba(14,20,22,.78) 100%)}}

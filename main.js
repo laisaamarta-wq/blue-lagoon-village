@@ -61,6 +61,24 @@
   }), { rootMargin: '-45% 0px -45% 0px' });
   Object.values(navMap).forEach(el => el && aio.observe(el));
 
+  /* ---------- at a glance: tiles rise in, numbers count up once ---------- */
+  const facts = $('[data-facts]');
+  if (facts) {
+    const fio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; fio.disconnect();
+      facts.classList.add('is-in');
+      if (reduced) return;
+      $$('[data-count]', facts).forEach((el, k) => {
+        const to = +el.dataset.count; if (to < 2) return;
+        const t0 = performance.now() + k * 90, dur = to > 50 ? 1600 : 1100;
+        el.textContent = '0';
+        const tick = t => { const p = Math.min(1, Math.max(0, (t - t0) / dur)); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+        requestAnimationFrame(tick);
+      });
+    }), { threshold: .25 });
+    fio.observe(facts);
+  }
+
   if (!hasGsap || reduced) {
     // still useful without motion: chapters update, films play, rooms and booking work
     document.body.classList.remove('is-loading');
@@ -212,7 +230,7 @@
       { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea']],
         views: [['The room', 'romantic-room-v2-32', '50% 50%'], ['Bed, bath and the sea', 'rr-sea-32', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub-32', '50% 50%'], ['The whole room', 'rr-overview-32', '50% 50%'], ['Sunset from the room', 'rr-sunset-32', '50% 50%'], ['On the terrace', 'rr-terrace-32', '50% 50%'], ['Shower room', 'rr-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
       { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', 'up to 5'], ['Outside', 'Garden, sea view'], ['Kitchen', 'Kitchenette']],
-        views: [['The room', 'room-sea-wide', '60% 50%'], ['Second bedroom', 'twin-room', '50% 50%'], ['The garden', 'villa-garden', '70% 50%']] },
+        views: [['Bedroom with a sea view', 'vg-bedroom-sea-32', '50% 50%'], ['Living room onto the garden', 'vg-living-32', '50% 50%'], ['Breakfast in the garden', 'vg-garden-32', '50% 50%'], ['Twin bedroom', 'vg-twin-32', '50% 50%'], ['Double bedroom', 'vg-bedroom-32', '50% 50%'], ['Bathroom', 'vg-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
       { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', 'up to 6'], ['Outside', 'Terrace, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['The room', 'room-terrace-view', '30% 50%'], ['The terrace', 'room-view', '60% 50%'], ['The sea', 'pool-sea', '50% 60%']] },
     ];
