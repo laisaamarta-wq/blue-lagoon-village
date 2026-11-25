@@ -606,3 +606,17 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .detail__arrow{width:42px;height:42px;border-radius:50%;background:rgba(14,28,32,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:rgba(255,255,255,.4)}
   .detail__close{top:calc(24px + env(safe-area-inset-top,0px));height:42px;padding:0 16px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(14,28,32,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.4);font-size:.75rem}
 }
+/* descend: on desktop the frame is the whole screen; on phones the film sits in a rounded window and the words read below it */
+.descend__frame{position:absolute;inset:0;overflow:hidden}
+@media (max-width:760px){
+  .descend__stage{background:radial-gradient(120% 60% at 50% 100%,#1d4a52 0%,var(--deep-2) 70%)}
+  .descend__frame{inset:auto;top:calc(80px + env(safe-area-inset-top,0px));left:var(--gut);right:var(--gut);height:54svh;border-radius:22px;-webkit-mask-image:-webkit-radial-gradient(white,black);isolation:isolate;box-shadow:0 30px 60px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.12)}
+  .descend__shade{background:linear-gradient(0deg,rgba(9,24,28,.25) 0%,rgba(9,24,28,0) 40%)}
+  .d-layer--lagoon{top:-14vh;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14vh);mask-image:linear-gradient(to bottom,transparent 0,#000 14vh)}
+  .d-in{height:calc(100% - 14vh)!important}
+  .descend__steps{top:calc(80px + 54svh + 22px + env(safe-area-inset-top,0px));bottom:auto!important;left:var(--gut);right:var(--gut);justify-content:space-between;gap:0;font-size:.74rem}
+  .descend__steps li{gap:8px}
+  .descend__steps li i{width:18px}
+  .descend__words{top:calc(80px + 54svh + 70px + env(safe-area-inset-top,0px));bottom:auto!important;align-items:start}
+  .descend__words p{font-size:clamp(2.3rem,10.5vw,3.1rem);max-width:15ch;text-shadow:none}
+}
