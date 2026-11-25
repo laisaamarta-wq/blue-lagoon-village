@@ -652,3 +652,40 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .detail__more::after{content:'';width:7px;height:7px;border-right:1.3px solid currentColor;border-bottom:1.3px solid currentColor;transform:rotate(-135deg) translate(-2px,-2px);transition:transform .3s}
   .detail__more[aria-expanded="false"]::after{transform:rotate(45deg) translate(-2px,-2px)}
 }
+/* descend on phones v2: taller film window that fills the screen down to the words; no empty space below */
+@media (max-width:760px){
+  .descend{height:290vh}
+  .descend__stage{--bl:calc(100lvh - 100svh + env(safe-area-inset-bottom,0px))}
+  .descend__frame{top:calc(76px + env(safe-area-inset-top,0px));height:auto;bottom:calc(var(--bl) + 232px)}
+  .descend__steps{top:auto;bottom:calc(var(--bl) + 194px)!important}
+  .descend__words{top:auto;bottom:calc(var(--bl) + 84px)!important;height:100px;align-items:start}
+}
+@supports not (height:100lvh){@media (max-width:760px){.descend__stage{--bl:env(safe-area-inset-bottom,0px)}}}
+/* v8 room gallery on phones: one clean column — header, large photo card, full thumbnails, info. No blur, nothing overlaps */
+@media (max-width:760px){
+  .detail__in{display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 0 calc(14px + env(safe-area-inset-bottom,0px))}
+  .detail__shade{display:none}
+  .detail__nav,.detail__close{position:static}
+  .detail__top{display:flex;align-items:center;justify-content:space-between;padding:0 var(--gut);margin-bottom:14px}
+  .detail__slides{position:relative;inset:auto;flex:none;margin:0 var(--gut);height:min(calc(100vw - 2*var(--gut)),calc(100svh - 360px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)));border-radius:18px;background:#16282d}
+  .dslide__bg{display:none!important}
+  .dslide__fg{object-fit:cover}
+  .detail__thumbs{position:static;flex:none;padding:14px var(--gut) 4px;margin:0}
+  .detail__thumbs button{flex:0 0 68px;height:52px}
+  .detail__panel{position:static;margin-top:auto;background:none;border-top:0;padding:10px var(--gut) 0;max-height:none;overflow:visible}
+  .detail__panel.is-more{box-shadow:none}
+  .detail__panel.is-more .detail__specs{max-height:30vh;overflow:auto}
+}
+/* water chapter on phones: panels fill the screen between the bar and the contact dock — no empty band above */
+@media (max-width:760px){
+  .water__track{padding-top:72px;padding-bottom:calc(100lvh - 100svh + 84px)}
+  .w-big,.w-full{height:calc(100svh - 72px - 84px - 24px)}
+  .w-tall{height:calc(100svh - 72px - 84px - 90px)}
+  .w-wide{height:calc(100svh - 72px - 84px - 160px)}
+  .water__progress{bottom:calc(100lvh - 100svh + 80px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:760px){
+  .detail__in{overflow-y:auto}
+  .detail__slides{height:clamp(72vw,calc(100svh - 318px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)),128vw)}
+  .detail__panel.is-more .detail__specs{max-height:none;overflow:visible}
+}

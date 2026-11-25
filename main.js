@@ -291,6 +291,12 @@
     stage.addEventListener('click', () => open(active, $(`[data-explore="${active}"]`)));
     stage.style.cursor = 'pointer';
     $('[data-detail-close]').addEventListener('click', close);
+    if (matchMedia('(max-width:760px)').matches) {
+      const top = document.createElement('div'); top.className = 'detail__top';
+      const nav = $('.detail__nav', detail), cls = $('[data-detail-close]');
+      nav.before(top); top.append(nav, cls);
+      $('.detail__in').insertBefore(top, slides);
+    }
     moreBtn.addEventListener('click', () => { const on = panel.classList.toggle('is-more'); moreBtn.setAttribute('aria-expanded', on); moreBtn.textContent = on ? 'Less' : 'Details'; });
     $('[data-detail-next]').addEventListener('click', () => show(cur + 1));
     $('[data-detail-prev]').addEventListener('click', () => show(cur - 1));
