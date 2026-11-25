@@ -743,3 +743,10 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .descend__words{bottom:calc(var(--bl) + 18px)!important;height:100px}
   .cdock.in-film{opacity:0;transform:translate(-50%,24px);pointer-events:none}
 }
+/* descend on phones v4: the screen follows the browser bar (dvh), so the film always reaches down to the words — no empty band */
+@media (max-width:760px){
+  .descend__stage{height:100svh;height:100dvh;--bl:env(safe-area-inset-bottom,0px)}
+  .descend__frame{bottom:calc(var(--bl) + 150px)}
+  .descend__steps{bottom:calc(var(--bl) + 116px)!important}
+  .descend__words{bottom:calc(var(--bl) + 10px)!important;height:96px}
+}
