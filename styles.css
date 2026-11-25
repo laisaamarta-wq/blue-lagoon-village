@@ -814,3 +814,12 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 }
 @keyframes dpan{from{translate:0 0}to{translate:calc(100vw - 100%) 0}}
 @media (prefers-reduced-motion:reduce){.dslide.is-on .dslide__fg{animation:none;translate:calc((100vw - 100%) / 2) 0}}
+/* v13 finale on phones: less air above, the lagoon film as a framed window, the words rise out of its lower edge */
+@media (max-width:760px){
+  .place{padding-bottom:56px}
+  .finale{min-height:0;padding-top:calc(min(64svh,128vw) - 120px);row-gap:30px}
+  .finale__media,.finale__shade{inset:12px var(--gut) auto;height:min(64svh,128vw);border-radius:22px;overflow:hidden}
+  .finale__shade{background:linear-gradient(180deg,rgba(16,41,47,.12) 0%,rgba(16,41,47,0) 30%,rgba(16,41,47,.35) 62%,rgba(16,41,47,.92) 92%,var(--deep-2) 100%)}
+  .finale__copy{gap:18px}
+}
+@media (max-width:760px){.finale__media{transform:none!important}.finale__media video{transform:scale(1.02)}}
