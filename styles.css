@@ -996,3 +996,11 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .amen__extra b{font-size:1.2rem}
 }
 .stay{padding-bottom:clamp(56px,7vw,110px)}
+.amen__split{grid-column:2;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.amen__split>div{padding:16px 18px;border-radius:16px;background:var(--ivory)}
+.amen__split .meta{color:var(--olive);margin:0 0 12px}
+.amen__split ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.amen__split li{display:flex;align-items:center;gap:12px;font-size:var(--t-small);color:var(--char)}
+.amen__split svg{flex:none;width:36px;height:36px;padding:8px;border-radius:50%;background:var(--cream);color:var(--deep)}
+@media (max-width:1100px){.amen__split{grid-column:1}}
+@media (max-width:760px){.amen__split{grid-template-columns:1fr;gap:10px}.amen__split>div{padding:14px}}
