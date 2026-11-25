@@ -210,7 +210,7 @@
   function setupRooms() {
     const ROOMS = [
       { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea']],
-        views: [['The room', 'romantic-room-v2', '58% 50%'], ['Bed, bath and the sea', 'rr-sea', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub', '50% 50%'], ['The whole room', 'rr-overview', '50% 50%'], ['Sunset from the room', 'rr-sunset', '50% 50%'], ['On the terrace', 'rr-terrace', '40% 50%'], ['Shower room', 'rr-bath', '50% 50%'], ['The pool at dusk', 'pool-sunset', '50% 55%'], ['The cove below', 'lagoon-stairs', '40% 50%']] },
+        views: [['The room', 'romantic-room-v2-32', '50% 50%'], ['Bed, bath and the sea', 'rr-sea-32', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub-32', '50% 50%'], ['The whole room', 'rr-overview-32', '50% 50%'], ['Sunset from the room', 'rr-sunset-32', '50% 50%'], ['On the terrace', 'rr-terrace-32', '50% 50%'], ['Shower room', 'rr-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
       { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', 'up to 5'], ['Outside', 'Garden, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['The room', 'room-sea-wide', '60% 50%'], ['Second bedroom', 'twin-room', '50% 50%'], ['The garden', 'villa-garden', '70% 50%']] },
       { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', 'up to 6'], ['Outside', 'Terrace, sea view'], ['Kitchen', 'Kitchenette']],
