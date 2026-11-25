@@ -1012,3 +1012,5 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 }
 @media (max-width:760px){.cdock.past-hero{opacity:0!important;transform:translate(-50%,24px)!important;pointer-events:none!important;visibility:hidden;transition:opacity .35s,transform .35s,visibility 0s .35s}}
 @media (max-width:760px){.stay{padding-bottom:12px}.amen{margin-top:28px}}
+.room__facts li.has-ic{display:flex;align-items:center;gap:8px}
+.room__facts li.has-ic svg{flex:none;color:var(--deep)}
