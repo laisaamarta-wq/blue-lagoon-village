@@ -572,3 +572,37 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 @media (max-width:760px){
   .foot{grid-template-columns:1fr;row-gap:14px}
 }
+/* v6 rooms on phones: all photos visible on each card */
+.room__media,.room__thumbs,.room__count{display:none}
+@media (max-width:900px){
+  .room__media{display:block;position:relative;cursor:pointer}
+  .room__media .room__mob{margin:0}
+  .room__count{display:inline-flex;align-items:center;gap:7px;position:absolute;right:10px;bottom:10px;padding:8px 12px;border-radius:999px;font:500 .72rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(14,28,32,.34);-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);border:1px solid rgba(255,255,255,.35)}
+  .room__thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:-4px}
+  .room__thumbs button{padding:0;border:0;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--line)}
+  .room__thumbs img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--e-out)}
+  .room__thumbs button:active img{transform:scale(.96)}
+}
+/* footer on phones: clear spacing between links and buttons, comfortable tap areas */
+@media (max-width:760px){
+  .foot__nav{gap:0 4px;margin:6px 0 4px;padding:6px 0 14px;border-bottom:1px solid var(--line-light)}
+  .foot__nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px 0 0;margin-right:10px}
+  .foot .social{gap:12px;margin-top:8px}
+  .foot .social__a{min-height:46px}
+}
+/* sticky film sections fill the whole phone screen, also when the browser bar collapses */
+@supports (height:100lvh){
+  .descend__stage,.water__stage,.retreat__stage{height:100lvh}
+  .d-in{height:100lvh}
+  .descend__words{bottom:calc(100lvh - 100svh + clamp(40px,7vh,84px) + 58px + env(safe-area-inset-bottom,0px))}
+  .descend__steps{bottom:calc(100lvh - 100svh + 34px + env(safe-area-inset-bottom,0px))}
+  @media (max-width:760px){.descend__words{bottom:calc(100lvh - 100svh + 82px + env(safe-area-inset-bottom,0px))}}
+}
+@supports (height:100lvh){.retreat__copy{margin-top:-100lvh}}
+/* room gallery on phones: compact glass controls, no overlap with Close */
+@media (max-width:760px){
+  .detail__nav{gap:10px}
+  .detail__nav [data-detail-label]{display:none}
+  .detail__arrow{width:42px;height:42px;border-radius:50%;background:rgba(14,28,32,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:rgba(255,255,255,.4)}
+  .detail__close{top:calc(24px + env(safe-area-inset-top,0px));height:42px;padding:0 16px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(14,28,32,.28);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.4);font-size:.75rem}
+}

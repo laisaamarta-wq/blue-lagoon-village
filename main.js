@@ -251,7 +251,7 @@
       clearTimeout(timer);
       if (!reduced) timer = setTimeout(() => show(cur + 1), 5200);
     }
-    function open(i, opener) {
+    function open(i, opener, start = 0) {
       room = i; lastFocus = opener;
       const r = ROOMS[i];
       slides.innerHTML = r.views.map(([label, base, pos]) => `<img src="assets/img/${base}.webp" srcset="assets/img/${base}-960.webp 960w, assets/img/${base}.webp 1600w" sizes="100vw" alt="${label}" style="object-position:${pos}">`).join('');
@@ -260,7 +260,7 @@
       $('[data-detail-total]').textContent = String(r.views.length).padStart(2, '0');
       $('[data-detail-specs]').innerHTML = r.specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
       detail.hidden = false; document.documentElement.style.overflow = 'hidden';
-      requestAnimationFrame(() => requestAnimationFrame(() => { detail.classList.add('is-open'); show(0); }));
+      requestAnimationFrame(() => requestAnimationFrame(() => { detail.classList.add('is-open'); show(start); }));
       $('[data-detail-close]').focus({ preventScroll: true, focusVisible: false });
     }
     function close() {
@@ -270,6 +270,18 @@
       lastFocus && lastFocus.focus({ preventScroll: true });
     }
     $$('[data-explore]').forEach(b => b.addEventListener('click', () => open(+b.dataset.explore, b)));
+    // phones: every room card shows all of its photos — a tappable main photo with a count, and a row of thumbnails
+    rooms.forEach((li, i) => {
+      const mob = $('.room__mob', li); if (!mob) return;
+      const wrap = document.createElement('div'); wrap.className = 'room__media';
+      mob.replaceWith(wrap); wrap.append(mob);
+      wrap.insertAdjacentHTML('beforeend', `<button class="room__count" type="button" aria-label="See all ${ROOMS[i].views.length} photos of ${ROOMS[i].name}"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><circle cx="5.5" cy="7" r="1.3"/><path d="M14.5 11l-4-3.5L4 13"/></svg>${ROOMS[i].views.length} photos</button>`);
+      const thumbs = document.createElement('div'); thumbs.className = 'room__thumbs';
+      thumbs.innerHTML = ROOMS[i].views.map(([label, base, pos], k) => `<button type="button" data-thumb="${k}" aria-label="${label}"><img src="assets/img/${base}-960.webp" alt="" loading="lazy" style="object-position:${pos}"></button>`).join('');
+      wrap.after(thumbs);
+      wrap.addEventListener('click', () => open(i, $('[data-explore]', li), 0));
+      $$('[data-thumb]', thumbs).forEach(t => t.addEventListener('click', () => open(i, t, +t.dataset.thumb)));
+    });
     stage.addEventListener('click', () => open(active, $(`[data-explore="${active}"]`)));
     stage.style.cursor = 'pointer';
     $('[data-detail-close]').addEventListener('click', close);
