@@ -895,3 +895,5 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .foot{row-gap:clamp(52px,7vh,72px);padding-bottom:clamp(36px,5vh,56px)}
   .foot__nav{justify-content:flex-start}
 }
+.w-swing{align-self:center!important;margin:0!important}
+@media (min-width:761px){.w-swing{width:30vw;height:72vh}}
