@@ -246,6 +246,9 @@
       const imgs = $$('.dslide', slides);
       cur = (n + imgs.length) % imgs.length;
       imgs.forEach((im, k) => im.classList.toggle('is-on', k === cur));
+      const fg = $('.dslide__fg', imgs[cur]);
+      const setAr = () => { if (fg.naturalWidth) slides.style.setProperty('--ar', fg.naturalWidth / fg.naturalHeight); };
+      if (fg.complete) setAr(); else fg.addEventListener('load', setAr, { once: true });
       $$('button', thumbsEl).forEach((t, k) => { t.classList.toggle('is-on', k === cur); if (k === cur && thumbsEl.offsetParent) thumbsEl.scrollTo({ left: t.offsetLeft - thumbsEl.clientWidth / 2 + t.offsetWidth / 2, behavior: 'smooth' }); });
       $('[data-detail-n]').textContent = String(cur + 1).padStart(2, '0');
       $('[data-detail-label]').textContent = ROOMS[room].views[cur][0];

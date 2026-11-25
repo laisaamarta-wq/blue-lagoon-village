@@ -689,3 +689,10 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .detail__slides{height:clamp(72vw,calc(100svh - 318px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)),128vw)}
   .detail__panel.is-more .detail__specs{max-height:none;overflow:visible}
 }
+/* v9 room gallery on phones: each photo whole, edge to edge, centred like a lightbox */
+@media (max-width:760px){
+  .detail__slides{margin:auto 0 0;border-radius:0;height:calc(100vw / var(--ar,1.5));max-height:calc(100svh - 300px);transition:height .45s var(--e-out);background:none}
+  .dslide__fg{object-fit:contain;object-position:center!important}
+  .detail__thumbs{margin-bottom:auto}
+  .detail__panel{margin-top:0}
+}
