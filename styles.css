@@ -1006,7 +1006,9 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 @media (max-width:760px){.amen__split{grid-template-columns:1fr;gap:10px}.amen__split>div{padding:14px}}
 /* v18 phones: each room card rests fully visible (button above the contact bar) before the next one slides over */
 @media (max-width:760px){
-  .stay__list .room:not(:last-of-type){margin-bottom:34vh}
+  .stay__list .room{margin-bottom:0}
+  .stay__list .room:has(+ .room){margin-bottom:34vh}
   .stay__list .room{padding-bottom:40px}
 }
 @media (max-width:760px){.cdock.past-hero{opacity:0!important;transform:translate(-50%,24px)!important;pointer-events:none!important;visibility:hidden;transition:opacity .35s,transform .35s,visibility 0s .35s}}
+@media (max-width:760px){.stay{padding-bottom:12px}.amen{margin-top:28px}}
