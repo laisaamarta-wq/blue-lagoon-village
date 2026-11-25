@@ -203,7 +203,7 @@
   function setupRooms() {
     const ROOMS = [
       { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea']],
-        views: [['The room', 'romantic-room', '58% 50%'], ['The pool at dusk', 'pool-sunset', '50% 55%'], ['The cove below', 'lagoon-stairs', '40% 50%']] },
+        views: [['The room', 'romantic-room', '58% 50%'], ['Bed, bath and the sea', 'rr-sea', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub', '50% 50%'], ['The whole room', 'rr-overview', '50% 50%'], ['Sunset from the room', 'rr-sunset', '50% 50%'], ['On the terrace', 'rr-terrace', '40% 50%'], ['Shower room', 'rr-bath', '50% 50%'], ['The pool at dusk', 'pool-sunset', '50% 55%'], ['The cove below', 'lagoon-stairs', '40% 50%']] },
       { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', 'up to 5'], ['Outside', 'Garden, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['The room', 'room-sea-wide', '60% 50%'], ['Second bedroom', 'twin-room', '50% 50%'], ['The garden', 'villa-garden', '70% 50%']] },
       { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', 'up to 6'], ['Outside', 'Terrace, sea view'], ['Kitchen', 'Kitchenette']],
@@ -240,12 +240,13 @@
     });
 
     // immersive detail
-    const detail = $('[data-detail]'), slides = $('[data-detail-slides]');
+    const detail = $('[data-detail]'), slides = $('[data-detail-slides]'), thumbsEl = $('[data-detail-thumbs]'), panel = $('.detail__panel'), moreBtn = $('[data-detail-more]');
     let cur = 0, room = 0, timer = 0, lastFocus = null;
     function show(n) {
-      const imgs = $$('img', slides);
+      const imgs = $$('.dslide', slides);
       cur = (n + imgs.length) % imgs.length;
       imgs.forEach((im, k) => im.classList.toggle('is-on', k === cur));
+      $$('button', thumbsEl).forEach((t, k) => { t.classList.toggle('is-on', k === cur); if (k === cur && thumbsEl.offsetParent) thumbsEl.scrollTo({ left: t.offsetLeft - thumbsEl.clientWidth / 2 + t.offsetWidth / 2, behavior: 'smooth' }); });
       $('[data-detail-n]').textContent = String(cur + 1).padStart(2, '0');
       $('[data-detail-label]').textContent = ROOMS[room].views[cur][0];
       clearTimeout(timer);
@@ -254,7 +255,11 @@
     function open(i, opener, start = 0) {
       room = i; lastFocus = opener;
       const r = ROOMS[i];
-      slides.innerHTML = r.views.map(([label, base, pos]) => `<img src="assets/img/${base}.webp" srcset="assets/img/${base}-960.webp 960w, assets/img/${base}.webp 1600w" sizes="100vw" alt="${label}" style="object-position:${pos}">`).join('');
+      slides.innerHTML = r.views.map(([label, base, pos]) => `<figure class="dslide"><img class="dslide__bg" src="assets/img/${base}-960.webp" alt="" aria-hidden="true"><img class="dslide__fg" src="assets/img/${base}.webp" srcset="assets/img/${base}-960.webp 960w, assets/img/${base}.webp 1600w" sizes="100vw" alt="${label}" style="object-position:${pos}"></figure>`).join('');
+      thumbsEl.innerHTML = r.views.map(([label, base], k) => `<button type="button" aria-label="${label}"><img src="assets/img/${base}-960.webp" alt="" loading="lazy"></button>`).join('');
+      $$('button', thumbsEl).forEach((t, k) => t.addEventListener('click', () => show(k)));
+      $('[data-detail-sum]').textContent = r.specs.map(([k, v]) => k === 'Guests' ? `${v} guests` : k === 'Bedrooms' ? `${v} bedrooms` : k === 'Bed' ? `${v} bed` : v).join(' · ');
+      panel.classList.remove('is-more'); moreBtn.setAttribute('aria-expanded', 'false'); moreBtn.textContent = 'Details';
       $('[data-detail-num]').textContent = String(i + 1).padStart(2, '0');
       $('[data-detail-name]').textContent = r.name;
       $('[data-detail-total]').textContent = String(r.views.length).padStart(2, '0');
@@ -277,7 +282,8 @@
       mob.replaceWith(wrap); wrap.append(mob);
       wrap.insertAdjacentHTML('beforeend', `<button class="room__count" type="button" aria-label="See all ${ROOMS[i].views.length} photos of ${ROOMS[i].name}"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><circle cx="5.5" cy="7" r="1.3"/><path d="M14.5 11l-4-3.5L4 13"/></svg>${ROOMS[i].views.length} photos</button>`);
       const thumbs = document.createElement('div'); thumbs.className = 'room__thumbs';
-      thumbs.innerHTML = ROOMS[i].views.map(([label, base, pos], k) => `<button type="button" data-thumb="${k}" aria-label="${label}"><img src="assets/img/${base}-960.webp" alt="" loading="lazy" style="object-position:${pos}"></button>`).join('');
+      const vs = ROOMS[i].views, extra = vs.length - 3;
+      thumbs.innerHTML = vs.slice(0, 3).map(([label, base, pos], k) => `<button type="button" data-thumb="${k}" aria-label="${label}"><img src="assets/img/${base}-960.webp" alt="" loading="lazy" style="object-position:${pos}">${k === 2 && extra > 0 ? `<span>+${extra}</span>` : ''}</button>`).join('');
       wrap.after(thumbs);
       wrap.addEventListener('click', () => open(i, $('[data-explore]', li), 0));
       $$('[data-thumb]', thumbs).forEach(t => t.addEventListener('click', () => open(i, t, +t.dataset.thumb)));
@@ -285,6 +291,7 @@
     stage.addEventListener('click', () => open(active, $(`[data-explore="${active}"]`)));
     stage.style.cursor = 'pointer';
     $('[data-detail-close]').addEventListener('click', close);
+    moreBtn.addEventListener('click', () => { const on = panel.classList.toggle('is-more'); moreBtn.setAttribute('aria-expanded', on); moreBtn.textContent = on ? 'Less' : 'Details'; });
     $('[data-detail-next]').addEventListener('click', () => show(cur + 1));
     $('[data-detail-prev]').addEventListener('click', () => show(cur - 1));
     $('[data-detail-ask]').addEventListener('click', () => { close(); window.__openBook({ room: ROOMS[room].name }); });

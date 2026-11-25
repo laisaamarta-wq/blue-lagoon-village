@@ -305,8 +305,6 @@ em{font-style:italic}
 .detail.is-open{opacity:1}
 .detail__in{position:absolute;inset:0}
 .detail__slides{position:absolute;inset:0;overflow:hidden}
-.detail__slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1s var(--e-out),transform 7s linear}
-.detail__slides img.is-on{opacity:1;transform:scale(1.0)}
 .detail__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,28,.35) 0%,rgba(16,24,28,0) 22%,rgba(16,24,28,0) 55%,rgba(16,24,28,.55) 100%)}
 .detail__close{position:absolute;top:calc(28px + env(safe-area-inset-top,0px));right:var(--gut)}
 .detail__nav{position:absolute;right:var(--gut);bottom:calc(var(--gut) + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:18px}
@@ -619,4 +617,38 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .descend__steps li i{width:18px}
   .descend__words{top:calc(80px + 54svh + 70px + env(safe-area-inset-top,0px));bottom:auto!important;align-items:start}
   .descend__words p{font-size:clamp(2.3rem,10.5vw,3.1rem);max-width:15ch;text-shadow:none}
+}
+/* v7 room gallery: slides with a soft blurred backdrop on phones; a compact sheet that never hides the room */
+.dslide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1s var(--e-out)}
+.dslide.is-on{opacity:1}
+.dslide__fg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 7s linear}
+.dslide.is-on .dslide__fg{transform:scale(1)}
+.dslide__bg{display:none}
+.detail__sum,.detail__more,.detail__thumbs{display:none}
+.detail__acts{display:flex;align-items:center;gap:18px}
+.room__thumbs button{position:relative}
+.room__thumbs span{position:absolute;inset:0;display:grid;place-items:center;background:rgba(14,28,32,.45);color:#fff;font:500 .95rem/1 var(--sans);letter-spacing:.06em}
+@media (max-width:760px){
+  .detail{background:#0e1c20}
+  .detail__slides{bottom:calc(206px + env(safe-area-inset-bottom,0px))}
+  .detail__shade{bottom:calc(206px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(14,28,32,.55) 0%,rgba(14,28,32,0) 20%)}
+  .dslide__bg{display:block;position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover;filter:blur(26px) saturate(1.2) brightness(.7)}
+  .dslide__fg{object-fit:contain;transform:none!important;transition:none}
+  .detail__thumbs{display:flex;gap:6px;position:absolute;left:0;right:0;bottom:calc(140px + env(safe-area-inset-bottom,0px));padding:0 var(--gut);overflow-x:auto;scrollbar-width:none}
+  .detail__thumbs::-webkit-scrollbar{display:none}
+  .detail__thumbs button{flex:0 0 64px;height:50px;padding:0;border:0;border-radius:9px;overflow:hidden;opacity:.5;outline:1.5px solid transparent;outline-offset:2px;transition:opacity .3s,outline-color .3s}
+  .detail__thumbs button.is-on{opacity:1;outline-color:rgba(255,255,255,.85)}
+  .detail__thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+  .detail__panel{left:0;right:0;bottom:0;width:auto;padding:16px var(--gut) calc(16px + env(safe-area-inset-bottom,0px));gap:6px;background:#0e1c20;border:0;border-top:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:none;backdrop-filter:none;max-height:70vh;overflow:auto;transition:box-shadow .4s}
+  .detail__panel.is-more{box-shadow:0 -30px 60px rgba(0,0,0,.45)}
+  .detail__panel .room__n{display:none}
+  .detail__panel .h-m{font-size:1.55rem}
+  .detail__sum{display:block;font-size:.88rem;opacity:.75;margin:0}
+  .detail__specs{display:none}
+  .detail__panel.is-more .detail__specs{display:grid;margin-top:6px}
+  .detail__acts{justify-content:space-between;margin-top:8px}
+  .detail__panel .btn{margin:0;padding:14px 18px;font-size:.72rem}
+  .detail__more{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 4px;color:var(--light);opacity:.85;font-size:.74rem}
+  .detail__more::after{content:'';width:7px;height:7px;border-right:1.3px solid currentColor;border-bottom:1.3px solid currentColor;transform:rotate(-135deg) translate(-2px,-2px);transition:transform .3s}
+  .detail__more[aria-expanded="false"]::after{transform:rotate(45deg) translate(-2px,-2px)}
 }
