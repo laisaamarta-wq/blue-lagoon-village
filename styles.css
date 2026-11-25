@@ -884,3 +884,14 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 .facts .fact span{max-width:22ch}
 .fact--photo::before{background:linear-gradient(180deg,rgba(9,24,28,.2) 0%,rgba(9,24,28,.1) 35%,rgba(9,24,28,.72) 100%)}
 .fact--photo b{text-shadow:0 2px 24px rgba(9,24,28,.5)}
+/* v13 desktop footer: more air between the details and the buttons */
+@media (min-width:761px){
+  .finale{row-gap:clamp(44px,6vh,72px)}
+  .foot{row-gap:clamp(40px,5vh,60px);padding-top:clamp(36px,4.5vh,52px);padding-bottom:clamp(14px,2vh,28px)}
+  .foot__contact,.foot__info,.foot address{line-height:1.75}
+  .foot__nav,.foot .social{align-self:center}
+}
+@media (min-width:761px){
+  .foot{row-gap:clamp(52px,7vh,72px);padding-bottom:clamp(36px,5vh,56px)}
+  .foot__nav{justify-content:flex-start}
+}
