@@ -316,7 +316,7 @@
     }
     $$('[data-explore]').forEach(b => b.addEventListener('click', () => open(+b.dataset.explore, b)));
     // phones: the cards stack — a tall card scrolls through fully before the next one slides over it
-    const stackTops = () => { if (!narrow()) return; rooms.forEach(li => li.style.setProperty('--st', `${Math.min(60, innerHeight - li.offsetHeight)}px`)); };
+    const stackTops = () => { if (!narrow()) return; rooms.forEach(li => li.style.setProperty('--st', `${Math.min(60, innerHeight - li.offsetHeight - 108)}px`)); };
     addEventListener('resize', stackTops); addEventListener('load', stackTops); setTimeout(stackTops, 300);
     // phones: every room card shows all of its photos — a tappable main photo with a count, and a row of thumbnails
     rooms.forEach((li, i) => {
