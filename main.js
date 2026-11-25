@@ -239,11 +239,11 @@
      ========================================================= */
   function setupRooms() {
     const ROOMS = [
-      { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea']],
+      { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea'], ['Kitchen', 'Kitchenette']],
         views: [['The room', 'romantic-room-v2-32', '50% 50%'], ['Bed, bath and the sea', 'rr-sea-32', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub-32', '50% 50%'], ['The whole room', 'rr-overview-32', '50% 50%'], ['Sunset from the room', 'rr-sunset-32', '50% 50%'], ['On the terrace', 'rr-terrace-32', '50% 50%'], ['Shower room', 'rr-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
-      { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', '4'], ['Outside', 'Private garden, sea view'], ['Kitchen', 'Kitchenette']],
+      { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', '4'], ['Outside', 'Private garden, sea view'], ['Kitchen', 'Full kitchen, dishwasher']],
         views: [['Main bedroom, sea view', 'vg-bedroom-sea-32', '50% 50%'], ['Main bedroom', 'vg-bedroom-32', '50% 50%'], ['Second bedroom, two beds', 'vg-twin-32', '50% 50%'], ['Living room onto the garden', 'vg-living-32', '50% 50%'], ['Breakfast in the garden', 'vg-garden-32', '50% 50%'], ['Bathroom', 'vg-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
-      { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', '6'], ['Outside', 'Private terrace, sea view'], ['Kitchen', 'Kitchenette']],
+      { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', '6'], ['Outside', 'Private terrace, sea view'], ['Kitchen', 'Full kitchen, dishwasher']],
         views: [['Living room onto the terrace', 'vt-living-32', '50% 50%'], ['Breakfast on the terrace', 'vt-breakfast-32', '50% 50%'], ['Dining and living room', 'vt-dining-32', '50% 50%'], ['Twin bedroom, sea view', 'vt-twin-sea-32', '50% 50%'], ['Attic bedroom', 'vt-attic-32', '50% 50%'], ['Double bedroom', 'vt-bedroom-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
     ];
     const stage = $('[data-stage]'), stageImgs = $$('[data-stage-img]'), stageN = $('[data-stage-n]');

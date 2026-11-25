@@ -973,3 +973,26 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   @supports (height:100dvh){.water.is-scrub{--wh:min(130vw,calc(100dvh - 280px))}}
   .water.is-scrub .water__progress{top:calc(86px + var(--wh) + 92px)}
 }
+/* v17 amenities: what every room and villa has, plus breakfast */
+.amen{margin:clamp(56px,7vw,110px) var(--gut) 0;padding:clamp(28px,3.4vw,52px);border-radius:24px;background:var(--cream);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:clamp(24px,3vw,56px);align-items:start}
+.amen__head .meta{color:var(--olive);margin-bottom:12px}
+.amen__head .h-m{margin:0;color:var(--deep)}
+.amen__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px}
+.amen__list li{display:flex;align-items:center;gap:12px;font-size:var(--t-small);line-height:1.3;color:var(--char)}
+.amen__list svg{flex:none;width:40px;height:40px;padding:9px;border-radius:50%;background:var(--ivory);color:var(--deep)}
+.amen__extra{grid-column:2;display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:16px;background:var(--deep);color:var(--light)}
+.amen__extra svg{flex:none}
+.amen__extra p{margin:0;display:grid;gap:3px}
+.amen__extra b{font:400 1.35rem/1.15 var(--serif)}
+.amen__extra span{font-size:var(--t-small);opacity:.85}
+.amen__extra em{font-style:normal;color:var(--light);opacity:1;font-weight:600}
+@media (max-width:1100px){.amen{grid-template-columns:1fr}.amen__extra{grid-column:1}.amen__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .amen{margin:40px var(--gut) 0;padding:24px 18px;border-radius:20px;gap:22px}
+  .amen__list{grid-template-columns:1fr 1fr;gap:14px 12px}
+  .amen__list li{gap:9px;font-size:.92rem}
+  .amen__list svg{width:34px;height:34px;padding:7px}
+  .amen__extra{padding:16px;gap:12px}
+  .amen__extra b{font-size:1.2rem}
+}
+.stay{padding-bottom:clamp(56px,7vw,110px)}
