@@ -942,3 +942,10 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .route__lbl span{font-size:.94rem}
   .route__lbl em{font-size:.9rem}
 }
+/* v15 water on phones: photos grow into the space when Safari's bars collapse, progress closer to the captions */
+@media (max-width:760px){
+  .water.is-scrub{--wh:min(122vw,calc(100svh - 280px))}
+  @supports (height:100dvh){.water.is-scrub{--wh:min(122vw,calc(100dvh - 270px))}}
+  @supports (height:100lvh){.water.is-scrub .water__stage{height:100lvh}}
+  .water.is-scrub .water__progress{top:calc(86px + var(--wh) + 70px)}
+}
