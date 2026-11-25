@@ -1009,3 +1009,4 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .stay__list .room:not(:last-of-type){margin-bottom:34vh}
   .stay__list .room{padding-bottom:40px}
 }
+@media (max-width:760px){.cdock.past-hero{opacity:0!important;transform:translate(-50%,24px)!important;pointer-events:none!important;visibility:hidden;transition:opacity .35s,transform .35s,visibility 0s .35s}}

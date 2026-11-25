@@ -487,3 +487,12 @@
   if (!d || !f || !('IntersectionObserver' in window)) return;
   new IntersectionObserver(([e]) => d.classList.toggle('in-film', e.isIntersecting && e.intersectionRatio > .35), { threshold: [0, .35, .6, 1] }).observe(f);
 })();
+
+/* phones: the contact bar lives only on the first screen; once the hero is scrolled past it stays hidden
+   (the menu and the footer carry the same Call / WhatsApp / Email links) */
+(() => {
+  const d = document.querySelector('.cdock'), h = document.querySelector('[data-hero]');
+  if (!d || !h || !('IntersectionObserver' in window)) return;
+  const mq = matchMedia('(max-width:760px)');
+  new IntersectionObserver(([e]) => d.classList.toggle('past-hero', mq.matches && !e.isIntersecting), { threshold: 0, rootMargin: '0px 0px -35% 0px' }).observe(h);
+})();
