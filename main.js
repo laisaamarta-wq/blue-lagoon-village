@@ -278,7 +278,7 @@
       $('[data-detail-n]').textContent = String(cur + 1).padStart(2, '0');
       $('[data-detail-label]').textContent = ROOMS[room].views[cur][0];
       clearTimeout(timer);
-      if (!reduced) timer = setTimeout(() => show(cur + 1), 5200);
+      if (!reduced) timer = setTimeout(() => show(cur + 1), matchMedia('(max-width:760px)').matches ? 7800 : 5200);
     }
     function open(i, opener, start = 0) {
       room = i; lastFocus = opener;

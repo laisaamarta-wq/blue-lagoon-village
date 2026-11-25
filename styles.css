@@ -798,3 +798,19 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .room__facts{gap:7px}
   .room__facts li.is-key{gap:7px;background:var(--deep);border-color:var(--deep);color:var(--light);padding:8px 13px 8px 11px}
 }
+/* v13 descend on phones: a little air between the film, the steps and the words */
+@media (max-width:760px){
+  .descend__frame{bottom:calc(var(--bl) + 172px)}
+  .descend__steps{bottom:calc(var(--bl) + 124px)!important}
+  .descend__words{bottom:calc(var(--bl) + 2px)!important;height:92px}
+}
+/* v13 room gallery on phones: a tall photo that fills the free space and glides slowly across, so the whole room is still seen */
+@media (max-width:760px){
+  .detail__slides{margin:0;height:max(calc(100vw / 1.5),calc(100svh - 352px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)));max-height:none;transition:none}
+  .detail__slides .dslide__fg{inset:0 auto auto 0;height:100%;width:auto;min-width:100%;max-width:none;object-fit:cover}
+  .dslide.is-on .dslide__fg{animation:dpan 7s cubic-bezier(.45,0,.55,1) .35s both}
+  .detail__thumbs{margin-bottom:0}
+  .detail__panel{margin-top:auto}
+}
+@keyframes dpan{from{translate:0 0}to{translate:calc(100vw - 100%) 0}}
+@media (prefers-reduced-motion:reduce){.dslide.is-on .dslide__fg{animation:none;translate:calc((100vw - 100%) / 2) 0}}
