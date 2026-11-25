@@ -550,3 +550,25 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .hero__inner{bottom:calc(88px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-width:760px){.cdock{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 60%),rgba(20,52,58,.34)}}
+/* v5 readability: larger small type on phones, larger footer type everywhere */
+.foot{font-size:calc(var(--t-small) + 1px);line-height:1.6}
+.foot__nav{font-size:calc(var(--t-meta) + 1.5px)}
+.foot__name{font-size:1.9rem}
+@media (max-width:760px){
+  :root{--t-meta:.75rem;--t-small:.98rem;--t-body:1.04rem}
+  .meta{letter-spacing:.13em}
+  .link,.btn{font-size:.78rem}
+  .room__text{font-size:1rem;line-height:1.6}
+  .cap-plain{font-size:1.08rem}
+  .place__list dt{font-size:1rem}
+  .stay__dots{font-size:.78rem}
+  .foot{font-size:1.02rem;line-height:1.6;color:rgba(251,248,242,.9)}
+  .foot__nav{font-size:.8rem;gap:12px 20px}
+  .foot__name{font-size:2.1rem}
+  .cdock__a span{font-size:.7rem}
+  .menu__contact{font-size:1rem}
+  .form label{font-size:.78rem}
+}
+@media (max-width:760px){
+  .foot{grid-template-columns:1fr;row-gap:14px}
+}
