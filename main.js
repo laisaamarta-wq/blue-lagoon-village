@@ -232,7 +232,7 @@
       { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', '4'], ['Outside', 'Private garden, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['Bedroom with a sea view', 'vg-bedroom-sea-32', '50% 50%'], ['Living room onto the garden', 'vg-living-32', '50% 50%'], ['Breakfast in the garden', 'vg-garden-32', '50% 50%'], ['Twin bedroom', 'vg-twin-32', '50% 50%'], ['Double bedroom', 'vg-bedroom-32', '50% 50%'], ['Bathroom', 'vg-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
       { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', '6'], ['Outside', 'Private terrace, sea view'], ['Kitchen', 'Kitchenette']],
-        views: [['The room', 'room-terrace-view', '30% 50%'], ['The terrace', 'room-view', '60% 50%'], ['The sea', 'pool-sea', '50% 60%']] },
+        views: [['Living room onto the terrace', 'vt-living-32', '50% 50%'], ['Breakfast on the terrace', 'vt-breakfast-32', '50% 50%'], ['Dining and living room', 'vt-dining-32', '50% 50%'], ['Twin bedroom, sea view', 'vt-twin-sea-32', '50% 50%'], ['Attic bedroom', 'vt-attic-32', '50% 50%'], ['Double bedroom', 'vt-bedroom-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
     ];
     const stage = $('[data-stage]'), stageImgs = $$('[data-stage-img]'), stageN = $('[data-stage-n]');
     const peek = $('[data-peek-img]');
