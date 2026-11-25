@@ -450,3 +450,10 @@
     clearTimeout(t); t = setTimeout(() => d.classList.remove('is-away'), 700);
   }, { passive: true });
 })();
+
+/* phones: the contact bar steps aside while the descend film plays, so the words below the film stay clear */
+(() => {
+  const d = document.querySelector('.cdock'), f = document.querySelector('[data-descend]');
+  if (!d || !f || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([e]) => d.classList.toggle('in-film', e.isIntersecting && e.intersectionRatio > .35), { threshold: [0, .35, .6, 1] }).observe(f);
+})();
