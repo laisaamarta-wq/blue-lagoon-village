@@ -193,7 +193,8 @@
     const kick = () => { read(); if (!raf) raf = requestAnimationFrame(loop); };
     size(); kick();
     addEventListener('scroll', kick, { passive: true });
-    addEventListener('resize', () => { size(); kick(); });
+    let rz = 0; const resized = () => { clearTimeout(rz); rz = setTimeout(() => { size(); kick(); }, 120); };
+    addEventListener('resize', resized); if (window.visualViewport) visualViewport.addEventListener('resize', resized);
     addEventListener('load', () => { size(); kick(); });
   } else {
     const dist = () => track.scrollWidth - innerWidth;
