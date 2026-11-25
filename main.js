@@ -229,9 +229,9 @@
     const ROOMS = [
       { name: 'Romantic Double Room', specs: [['Size', '30 m²'], ['Guests', '2'], ['Bed', 'Queen'], ['Bath', 'Whirlpool tub'], ['View', 'Sea']],
         views: [['The room', 'romantic-room-v2-32', '50% 50%'], ['Bed, bath and the sea', 'rr-sea-32', '50% 50%'], ['Whirlpool and kitchenette', 'rr-tub-32', '50% 50%'], ['The whole room', 'rr-overview-32', '50% 50%'], ['Sunset from the room', 'rr-sunset-32', '50% 50%'], ['On the terrace', 'rr-terrace-32', '50% 50%'], ['Shower room', 'rr-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
-      { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', 'up to 5'], ['Outside', 'Garden, sea view'], ['Kitchen', 'Kitchenette']],
+      { name: 'Villa · Garden · Sea View', specs: [['Size', 'about 105 m²'], ['Bedrooms', '2'], ['Guests', '4'], ['Outside', 'Private garden, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['Bedroom with a sea view', 'vg-bedroom-sea-32', '50% 50%'], ['Living room onto the garden', 'vg-living-32', '50% 50%'], ['Breakfast in the garden', 'vg-garden-32', '50% 50%'], ['Twin bedroom', 'vg-twin-32', '50% 50%'], ['Double bedroom', 'vg-bedroom-32', '50% 50%'], ['Bathroom', 'vg-bath-32', '50% 50%'], ['The pool at dusk', 'pool-sunset-32', '50% 50%'], ['The cove below', 'lagoon-stairs-32', '50% 50%']] },
-      { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', 'up to 6'], ['Outside', 'Terrace, sea view'], ['Kitchen', 'Kitchenette']],
+      { name: 'Villa · Terrace · Sea View', specs: [['Size', 'about 135 m²'], ['Bedrooms', '3'], ['Guests', '6'], ['Outside', 'Private terrace, sea view'], ['Kitchen', 'Kitchenette']],
         views: [['The room', 'room-terrace-view', '30% 50%'], ['The terrace', 'room-view', '60% 50%'], ['The sea', 'pool-sea', '50% 60%']] },
     ];
     const stage = $('[data-stage]'), stageImgs = $$('[data-stage-img]'), stageN = $('[data-stage-n]');

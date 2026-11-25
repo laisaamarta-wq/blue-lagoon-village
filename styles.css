@@ -791,3 +791,10 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .retreat__text{gap:12px}
 }
 @media (max-width:760px){.retreat__shade{background:linear-gradient(180deg,rgba(14,20,22,.25) 0%,rgba(14,20,22,0) 18%,rgba(14,20,22,.18) 36%,rgba(14,20,22,.62) 62%,rgba(14,20,22,.78) 100%)}}
+/* v13 key room facts: guests and garden / terrace stand out */
+.room__facts li.is-key{display:flex;align-items:center;gap:9px;color:var(--deep);font-weight:600}
+.room__facts li.is-key svg{flex:none;width:15px;height:15px}
+@media (max-width:760px){
+  .room__facts{gap:7px}
+  .room__facts li.is-key{gap:7px;background:var(--deep);border-color:var(--deep);color:var(--light);padding:8px 13px 8px 11px}
+}
