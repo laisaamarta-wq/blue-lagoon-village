@@ -178,12 +178,23 @@
     wN.textContent = String(best + 1).padStart(2, '0');
   };
   if (narrow()) {
-    // phones: a calm native swipe row, no pinned scroll — no empty screens before or after
-    water.classList.add('is-swipe');
-    track.addEventListener('scroll', () => requestAnimationFrame(() => {
-      const max = track.scrollWidth - track.clientWidth;
-      wBar.style.transform = `scaleX(${max > 0 ? track.scrollLeft / max : 0})`; setWN();
-    }), { passive: true });
+    // phones: the row is pinned and the ordinary vertical scroll slides it sideways, so nobody misses the pictures
+    water.classList.add('is-scrub');
+    const stage = $('[data-water-stage]');
+    let dist = 0, cur = 0, want = 0, raf = 0;
+    const size = () => { dist = Math.max(0, track.scrollWidth - innerWidth); water.style.height = `${stage.offsetHeight + dist * 1.15}px`; };
+    const read = () => { const r = water.getBoundingClientRect(), span = water.offsetHeight - stage.offsetHeight; want = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0; };
+    const loop = () => {
+      cur += (want - cur) * .16; if (Math.abs(want - cur) < .0004) cur = want;
+      track.style.transform = `translate3d(${-dist * cur}px,0,0)`;
+      wBar.style.transform = `scaleX(${cur})`; setWN();
+      raf = cur !== want ? requestAnimationFrame(loop) : 0;
+    };
+    const kick = () => { read(); if (!raf) raf = requestAnimationFrame(loop); };
+    size(); kick();
+    addEventListener('scroll', kick, { passive: true });
+    addEventListener('resize', () => { size(); kick(); });
+    addEventListener('load', () => { size(); kick(); });
   } else {
     const dist = () => track.scrollWidth - innerWidth;
     const size = () => { water.style.height = `${dist() * (narrow() ? 1.35 : 1.15) + innerHeight}px`; };

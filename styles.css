@@ -823,3 +823,64 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .finale__copy{gap:18px}
 }
 @media (max-width:760px){.finale__media{transform:none!important}.finale__media video{transform:scale(1.02)}}
+/* v13 place: distances as a route — a dotted path from the village, each stop with an icon and a big serif number */
+.route{position:relative;display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));gap:0 clamp(14px,1.6vw,26px);list-style:none;margin:0;padding:0}
+.route::before{content:'';position:absolute;left:6px;right:0;top:6px;border-top:1.5px dashed rgba(24,62,70,.35)}
+.route>li{position:relative;display:grid;align-content:start;gap:12px;padding-top:30px}
+.route__dot{position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;background:var(--ivory);border:1.5px solid var(--deep)}
+.route__start .route__dot{background:var(--deep);box-shadow:0 0 0 5px rgba(24,62,70,.12)}
+.route__start p{font:500 var(--t-meta)/1.3 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--olive);white-space:nowrap}
+.route__ic{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:var(--cream);color:var(--deep)}
+.route__val{display:flex;align-items:baseline;gap:5px;margin:4px 0 0;color:var(--deep)}
+.route__val b{font:400 clamp(2.4rem,1.6rem + 1.8vw,3.4rem)/.9 var(--serif);letter-spacing:-.02em}
+.route__val small{font:italic 400 1.15rem/1 var(--serif);opacity:.8}
+.route__lbl{display:grid;gap:3px;margin:0}
+.route__lbl span{font-size:var(--t-small);color:var(--char)}
+.route__lbl em{font:italic 400 1rem/1.2 var(--serif);color:var(--olive)}
+.route__stop:nth-child(2) .route__dot{background:var(--aqua);border-color:var(--aqua)}
+@media (max-width:760px){
+  .route{grid-template-columns:1fr;gap:0}
+  .route::before{left:6px;right:auto;top:8px;bottom:40px;border-top:0;border-left:1.5px dashed rgba(24,62,70,.35)}
+  .route>li{grid-template-columns:42px 1fr;grid-template-areas:"ic val" "ic lbl";column-gap:16px;row-gap:4px;padding:0 0 26px 34px;align-items:center}
+  .route__start{display:block!important;padding-bottom:22px!important}
+  .route__dot{top:4px}
+  .route>li.route__stop .route__dot{top:15px}
+  .route__ic{grid-area:ic;align-self:start}
+  .route__val{grid-area:val;margin:0}
+  .route__val b{font-size:2.5rem}
+  .route__lbl{grid-area:lbl;grid-template-columns:auto auto;justify-content:start;gap:8px;align-items:baseline}
+  .route__lbl span{font-size:.98rem}
+}
+/* v13 retreat on phones: the film is a tall picture that melts into the dark, the words rise out of it — nothing sticky, nothing to slip */
+@media (max-width:760px){
+  .retreat__stage{position:relative;height:min(80svh,165vw)}
+  .retreat__copy{margin-top:-210px;min-height:0;padding-bottom:84px}
+  .retreat__shade{background:linear-gradient(180deg,rgba(14,20,22,.22) 0%,rgba(14,20,22,0) 22%,rgba(14,20,22,.1) 50%,rgba(16,41,47,.75) 80%,var(--deep-2) 100%)}
+}
+/* v13 water on phones: pinned row driven by the vertical scroll */
+@media (max-width:760px){
+  .water.is-scrub .water__stage{position:sticky;top:0;height:100svh;overflow:hidden}
+  .water.is-scrub .water__track{width:max-content;height:100%;padding:64px 10vw 104px var(--gut);gap:14px;align-items:center;will-change:transform}
+  .water.is-scrub .w-intro{width:80vw;gap:18px}
+  .water.is-scrub .w-big,.water.is-scrub .w-full{width:80vw;height:min(118vw,calc(100svh - 210px))}
+  .water.is-scrub .w-tall{width:66vw;height:min(118vw,calc(100svh - 210px));margin:0;align-self:center}
+  .water.is-scrub .w-wide{width:86vw;height:min(118vw,calc(100svh - 210px));margin:0;align-self:center}
+  .water.is-scrub .w-tall .media,.water.is-scrub .w-wide .media{height:calc(100% - 56px)}
+  .water.is-scrub .w-end{width:72vw}
+  .water.is-scrub .media>img,.water.is-scrub .media>video{left:0;width:100%;transform:none!important}
+  .water.is-scrub .water__progress{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  .water.is-scrub .w-hint span{font-size:0}
+  .water.is-scrub .w-hint span::after{content:'Scroll';font-size:var(--t-meta)}
+}
+/* v13 readability on desktop: small type one step larger and darker; the pool-terrace caption clear */
+@media (min-width:761px){
+  :root{--t-meta:clamp(.74rem,.7rem + .1vw,.82rem);--t-small:clamp(.98rem,.94rem + .12vw,1.06rem);--t-body:clamp(1.04rem,.98rem + .2vw,1.18rem)}
+}
+.approach__capline{font-size:clamp(1.3rem,1.1rem + .6vw,1.65rem);color:var(--char)}
+.approach__cap .meta{color:var(--char-2)}
+.facts .fact span{opacity:.86}
+.route__lbl em{color:var(--char-2)}
+@media (max-width:760px){.approach__capline{font-size:1.2rem}}
+.facts .fact span{max-width:22ch}
+.fact--photo::before{background:linear-gradient(180deg,rgba(9,24,28,.2) 0%,rgba(9,24,28,.1) 35%,rgba(9,24,28,.72) 100%)}
+.fact--photo b{text-shadow:0 2px 24px rgba(9,24,28,.5)}
