@@ -159,7 +159,14 @@
     wFigs.forEach((f, i) => { const r = f.getBoundingClientRect(); const d = Math.abs(r.left + r.width / 2 - c); if (d < bd) { bd = d; best = i; } });
     wN.textContent = String(best + 1).padStart(2, '0');
   };
-  {
+  if (narrow()) {
+    // phones: a calm native swipe row, no pinned scroll — no empty screens before or after
+    water.classList.add('is-swipe');
+    track.addEventListener('scroll', () => requestAnimationFrame(() => {
+      const max = track.scrollWidth - track.clientWidth;
+      wBar.style.transform = `scaleX(${max > 0 ? track.scrollLeft / max : 0})`; setWN();
+    }), { passive: true });
+  } else {
     const dist = () => track.scrollWidth - innerWidth;
     const size = () => { water.style.height = `${dist() * (narrow() ? 1.35 : 1.15) + innerHeight}px`; };
     size();
@@ -278,6 +285,9 @@
       lastFocus && lastFocus.focus({ preventScroll: true });
     }
     $$('[data-explore]').forEach(b => b.addEventListener('click', () => open(+b.dataset.explore, b)));
+    // phones: the cards stack — a tall card scrolls through fully before the next one slides over it
+    const stackTops = () => { if (!narrow()) return; rooms.forEach(li => li.style.setProperty('--st', `${Math.min(60, innerHeight - li.offsetHeight)}px`)); };
+    addEventListener('resize', stackTops); addEventListener('load', stackTops); setTimeout(stackTops, 300);
     // phones: every room card shows all of its photos — a tappable main photo with a count, and a row of thumbnails
     rooms.forEach((li, i) => {
       const mob = $('.room__mob', li); if (!mob) return;

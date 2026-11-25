@@ -696,3 +696,43 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
   .detail__thumbs{margin-bottom:auto}
   .detail__panel{margin-top:0}
 }
+/* v10 phones: the water chapter is a native swipe row; the descend screen uses the visible height so nothing empty trails it */
+@media (max-width:760px){
+  .water.is-swipe{height:auto!important;padding:88px 0 40px}
+  .water.is-swipe .water__stage{position:relative;height:auto!important;overflow:visible}
+  .water.is-swipe .water__track{width:auto;height:auto;padding:0 var(--gut);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;align-items:flex-start;gap:12px;transform:none!important}
+  .water.is-swipe .water__track::-webkit-scrollbar{display:none}
+  .water.is-swipe .w-panel{scroll-snap-align:start}
+  .water.is-swipe .w-intro{width:78vw;align-self:center;gap:18px}
+  .water.is-swipe .w-big,.water.is-swipe .w-full{width:80vw;height:112vw}
+  .water.is-swipe .w-tall{width:64vw;height:112vw}
+  .water.is-swipe .w-wide{width:86vw;height:112vw}
+  .water.is-swipe .w-tall .media,.water.is-swipe .w-wide .media{height:calc(100% - 56px)}
+  .water.is-swipe .w-end{width:70vw;align-self:center}
+  .water.is-swipe .media>img,.water.is-swipe .media>video{left:0;width:100%;transform:none!important}
+  .water.is-swipe .water__progress{position:static;margin:22px var(--gut) 0}
+  .water.is-swipe .w-hint span{font-size:0}
+  .water.is-swipe .w-hint span::after{content:'Swipe';font-size:var(--t-meta)}
+  .descend__stage{height:100svh}
+  .descend,.descend__stage{background:var(--deep-2)}
+  .descend__stage{background:radial-gradient(120% 60% at 50% 100%,#1d4a52 0%,var(--deep-2) 70%)}
+  .descend__stage{--bl:env(safe-area-inset-bottom,0px)}
+  .descend{height:260vh}
+}
+@media (max-width:760px){.descend__stage{background:var(--deep-2)}}
+/* v11 rooms on phones: three full-width cards that stack over each other as you scroll */
+@media (max-width:900px){
+  .stay__list{display:block;overflow:visible;margin:0 calc(-1 * var(--gut));padding:0;scroll-snap-type:none}
+  .stay__dots{display:none!important}
+  .room{position:sticky;top:var(--st,60px);display:grid;gap:12px;margin:0;padding:0 0 34px;background:var(--ivory);border-radius:26px 26px 0 0;overflow:hidden;box-shadow:0 -22px 44px -26px rgba(20,40,44,.35)}
+  .room+.room{margin-top:26px}
+  .room:first-child{box-shadow:none}
+  .room__media{border-radius:0}
+  .room__media .room__mob{width:100%;margin:0;border-radius:0;aspect-ratio:4/3}
+  .room__count{right:var(--gut);bottom:14px}
+  .room__thumbs{padding:0 var(--gut);margin-top:0}
+  .room>*:not(.room__media):not(.room__thumbs){margin-inline:var(--gut)}
+  .room__n{margin-top:6px}
+  .stay__hold{display:none}
+}
+@media (max-width:900px){.room__media .room__mob{aspect-ratio:3/2}}
