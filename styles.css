@@ -1027,3 +1027,27 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 .retreat__offer .btn{justify-self:start;background:var(--deep);color:var(--light);border-color:var(--deep)}
 .retreat__offer .btn:hover{background:var(--deep-2)}
 @media (max-width:760px){.retreat__text>.body{padding:18px;font-size:1.04rem}.retreat__offer{padding:20px 18px}}
+/* v20 retreat composition: headline and words on the left over a soft shade; one refined card on the right with the two yoga pictures */
+@media (min-width:761px){
+  .retreat__shade{background:linear-gradient(90deg,rgba(12,20,22,.62) 0%,rgba(12,20,22,.34) 38%,rgba(12,20,22,0) 62%),linear-gradient(180deg,rgba(12,20,22,.25) 0%,rgba(12,20,22,0) 25%,rgba(12,20,22,0) 60%,rgba(12,20,22,.55) 100%)}
+  .retreat__copy{grid-template-rows:auto auto 1fr;align-content:end;row-gap:22px}
+  .retreat__copy>.meta{grid-column:1/7;grid-row:1}
+  .retreat__copy .h-xl{grid-column:1/7;grid-row:2}
+  .retreat__text{grid-column:1/6;grid-row:3;align-self:start;padding:0}
+  .retreat__text>.body{padding:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:0;font-size:clamp(1.12rem,1rem + .35vw,1.32rem);line-height:1.6;color:rgba(251,248,242,.94);text-shadow:0 1px 24px rgba(8,14,16,.55);max-width:34ch;padding-left:20px;border-left:1px solid rgba(251,248,242,.45)}
+  .retreat__offer{grid-column:9/13;grid-row:1/4;align-self:end;padding:12px 12px 26px;border-radius:22px;background:rgba(251,248,242,.94);gap:12px}
+  .retreat__offer>.meta,.retreat__offer-t,.retreat__offer ul,.retreat__offer .btn{margin-left:14px;margin-right:14px}
+}
+.retreat__offer .retreat__pics{grid-column:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 6px}
+.retreat__offer .retreat__pics figure{margin:0;display:block}
+.retreat__offer .retreat__pics img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:none}
+.retreat__offer .retreat__pics figcaption{display:none}
+@media (min-width:761px) and (max-width:1180px){.retreat__offer{grid-column:8/13}}
+@media (max-width:760px){.retreat__offer{padding:10px 10px 22px}.retreat__offer>.meta,.retreat__offer-t,.retreat__offer ul,.retreat__offer .btn{margin-left:10px;margin-right:10px}}
+@media (min-width:761px){
+  .retreat__copy{grid-template-rows:auto auto auto;align-content:end}
+  .retreat__copy>.meta{align-self:end}
+  .retreat__offer{grid-row:1/4;align-self:end;grid-column:8/12}
+  .retreat__text{align-self:end;padding-bottom:6px}
+}
+@media (min-width:761px){.retreat__copy{grid-template-rows:1fr auto auto}.retreat__text{padding-top:10px}}
