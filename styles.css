@@ -1056,3 +1056,11 @@ body.is-loading .cdock,html[style*="overflow: hidden"] .cdock{opacity:0;pointer-
 .facts .fact b{margin-top:auto;margin-bottom:0}
 .facts .fact span{min-height:calc(3 * 1.3em)}
 @media (min-width:1101px){.facts .fact span{min-height:calc(2 * 1.3em)}}
+/* v23 desktop room bar: specs wrap inside the bar so the button never spills over its edge */
+@media (min-width:761px){
+  .detail__panel{overflow:hidden;gap:clamp(18px,2.2vw,40px);padding:16px 16px 16px 26px}
+  .detail__specs{flex:1 1 auto;min-width:0;flex-wrap:wrap;gap:10px clamp(16px,1.8vw,30px)}
+  .detail__acts{flex:none}
+  .detail__panel .btn{padding-left:22px;padding-right:22px}
+}
+@media (min-width:761px) and (max-width:1180px){.detail__specs div:nth-child(n+4){display:grid}}
